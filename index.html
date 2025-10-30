@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Agents - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+
+        .content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .agent-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+        }
+
+        .agent-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .quick-access {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .agent-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+
+            .stat-number {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Affiliate Agents Dashboard</h1>
+            <p class="subtitle">Distributed Affiliate Tracking System</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">1,000</div>
+                <div class="stat-label">Active Agents</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">QR</div>
+                <div class="stat-label">Mobile Ready</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Welcome</h2>
+                <p>This is your affiliate agents management dashboard. Each agent has a unique tracking page with QR code support for seamless mobile campaigns.</p>
+
+                <div class="info-box">
+                    <h3>Quick Start</h3>
+                    <p>All agents are numbered from <code>AGENT4001</code> to <code>AGENT5000</code>. Click any agent number below to access their individual tracking page.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>1,000 unique tracking pages</li>
+                    <li>Individual QR codes for mobile access</li>
+                    <li>Fast, lightweight static pages</li>
+                    <li>GitHub Pages hosting</li>
+                    <li>Mobile-responsive design</li>
+                    <li>Easy to customize and deploy</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Quick Access</h2>
+                <div class="quick-access">
+                    <a href="AGENT4001/" class="btn">AGENT4001</a>
+                    <a href="AGENT4500/" class="btn">AGENT4500</a>
+                    <a href="AGENT5000/" class="btn">AGENT5000</a>
+                    <a href="https://github.com/Janady13/affiliate-agents" class="btn btn-secondary" target="_blank">GitHub Repository</a>
+                    <a href="#agents" class="btn btn-secondary">Browse All Agents</a>
+                </div>
+            </div>
+
+            <div class="section" id="agents">
+                <h2>All Agents (4001-5000)</h2>
+                <p style="margin-bottom: 15px;">Click any agent to access their tracking page:</p>
+                <div class="agent-grid" id="agentGrid"></div>
+            </div>
+
+            <div class="section">
+                <h2>Documentation</h2>
+                <div class="info-box">
+                    <h3>Agent URL Structure</h3>
+                    <p>Each agent can be accessed at:</p>
+                    <code>https://janady13.github.io/affiliate-agents/AGENTXXXX/</code>
+                </div>
+
+                <div class="info-box">
+                    <h3>Customization</h3>
+                    <p>To customize affiliate links, edit the <code>index.html</code> file in each agent folder and replace the example URLs with your actual affiliate links.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Affiliate Agents Project | Powered by GitHub Pages</p>
+        </footer>
+    </div>
+
+    <script>
+        // Generate agent links dynamically
+        const agentGrid = document.getElementById('agentGrid');
+        for (let i = 4001; i <= 5000; i++) {
+            const agentId = `AGENT${i}`;
+            const link = document.createElement('a');
+            link.href = `${agentId}/`;
+            link.className = 'agent-link';
+            link.textContent = i;
+            agentGrid.appendChild(link);
+        }
+    </script>
+</body>
+</html>
